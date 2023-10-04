@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{68CF6531-92A8-488C-AC72-4F14F2F42C6E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B92E732E-FCE3-4F7A-9739-F6BD36912DFE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{213CEB78-DB0A-4605-A3C3-DEA64D022989}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{1E1AA19C-6390-4889-9B4B-8E9EDD6D2A6E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{793C9847-3F97-4285-B7A2-492932721580}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{4E073DA3-08B9-4DEF-ADF6-734B60351167}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackerNews.Domain", "HackerNews.Domain\HackerNews.Domain.csproj", "{9E9706C0-EA51-4639-8B0F-E3DF02A8DE07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackerNews.Application", "HackerNews.Application\HackerNews.Application.csproj", "{94DA8A31-8CC4-46C4-BC57-7B31838985A2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9E9706C0-EA51-4639-8B0F-E3DF02A8DE07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E9706C0-EA51-4639-8B0F-E3DF02A8DE07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E9706C0-EA51-4639-8B0F-E3DF02A8DE07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E9706C0-EA51-4639-8B0F-E3DF02A8DE07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94DA8A31-8CC4-46C4-BC57-7B31838985A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94DA8A31-8CC4-46C4-BC57-7B31838985A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94DA8A31-8CC4-46C4-BC57-7B31838985A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94DA8A31-8CC4-46C4-BC57-7B31838985A2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{213CEB78-DB0A-4605-A3C3-DEA64D022989} = {B92E732E-FCE3-4F7A-9739-F6BD36912DFE}
+		{1E1AA19C-6390-4889-9B4B-8E9EDD6D2A6E} = {B92E732E-FCE3-4F7A-9739-F6BD36912DFE}
+		{793C9847-3F97-4285-B7A2-492932721580} = {B92E732E-FCE3-4F7A-9739-F6BD36912DFE}
+		{4E073DA3-08B9-4DEF-ADF6-734B60351167} = {B92E732E-FCE3-4F7A-9739-F6BD36912DFE}
+		{9E9706C0-EA51-4639-8B0F-E3DF02A8DE07} = {793C9847-3F97-4285-B7A2-492932721580}
+		{94DA8A31-8CC4-46C4-BC57-7B31838985A2} = {793C9847-3F97-4285-B7A2-492932721580}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {78BCA70C-973B-4FAF-9213-8E4576B9EE59}
+	EndGlobalSection
+EndGlobal
