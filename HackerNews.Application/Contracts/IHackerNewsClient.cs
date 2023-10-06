@@ -9,8 +9,8 @@ namespace HackerNews.Application.Contracts
 {
     public interface IHackerNewsClient
     {
-        Task<List<int>> GetNewStories();
+        Task<List<int>> GetNewStoryIds(int page, int size);
 
-        Task<Story> GetStoryById(int id);
+        Task<Story?> GetStoryById(int id);
     }
 }

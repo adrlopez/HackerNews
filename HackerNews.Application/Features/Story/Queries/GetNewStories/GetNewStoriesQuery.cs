@@ -1,11 +1,12 @@
-﻿using System;
+﻿using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MediatR;
+using HackerNews.Application.Features.Story.Queries.GetStory;
 
 namespace HackerNews.Application.Features.Story.Queries.GetNewStories
 {
-    public record GetNewStoriesQuery : IRequest<List<int>>;
+    public record GetNewStoriesQuery(int page, int size) : IRequest<List<StoryDto>>;
 }
