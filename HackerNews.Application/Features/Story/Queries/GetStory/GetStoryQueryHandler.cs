@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using HackerNews.Application.Contracts;
-using HackerNews.Application.Features.Story.Queries.GetStoryDetails;
+using HackerNews.Application.Exceptions;
 using MediatR;
 
 namespace HackerNews.Application.Features.Story.Queries.GetStory
@@ -25,6 +25,10 @@ namespace HackerNews.Application.Features.Story.Queries.GetStory
         {
             // call the http client to get the story
             var story = await _client.GetStoryById(request.Id);
+
+            // verify that story exists
+            if (story == null)
+                throw new NotFoundException(nameof(Story), request.Id);
 
             // convert entity to DTO object
 

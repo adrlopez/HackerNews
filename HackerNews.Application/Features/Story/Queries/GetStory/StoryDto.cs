@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HackerNews.Application.Features.Story.Queries.GetStoryDetails
+namespace HackerNews.Application.Features.Story.Queries.GetStory
 {
     public class StoryDto
     {

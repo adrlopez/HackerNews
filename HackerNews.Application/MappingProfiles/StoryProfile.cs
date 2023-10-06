@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using HackerNews.Application.Features.Story.Queries.GetStoryDetails;
+using HackerNews.Application.Features.Story.Queries.GetStory;
 using HackerNews.Domain;
 
 namespace HackerNews.Application.MappingProfiles
@@ -13,7 +13,7 @@ namespace HackerNews.Application.MappingProfiles
     {
         public StoryProfile()
         {
-            CreateMap<StoryDto, Story>().ReverseMap();
+            CreateMap<Story, StoryDto>();
         }
     }
 }
