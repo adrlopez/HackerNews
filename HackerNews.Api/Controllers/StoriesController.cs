@@ -1,6 +1,8 @@
-﻿using HackerNews.Application.Features.Story.Queries.GetNewStories;
+﻿using System.Runtime.Serialization;
+using HackerNews.Application.Features.Story.Queries.GetNewStories;
 using HackerNews.Application.Features.Story.Queries.GetNewStoryIds;
 using HackerNews.Application.Features.Story.Queries.GetStory;
+using HackerNews.Application.Features.Story.Queries.SearchStories;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,7 +31,7 @@ namespace HackerNews.Api.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<int>>> GetNewStoryIds(int page, int size)
         {
-            var newStoryIds = await _mediator.Send(new GetNewStoryIdsQuery(page, size));
+            var newStoryIds = await _mediator.Send(new GetNewStoryIdsByPageQuery(page, size));
             return Ok(newStoryIds);
         }
 
@@ -43,7 +45,21 @@ namespace HackerNews.Api.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<StoryDto>>> GetNewStories(int page, int size)
         {
-            var newStories = await _mediator.Send(new GetNewStoriesQuery(page, size));
+            var newStories = await _mediator.Send(new GetNewStoriesByPageQuery(page, size));
+            return Ok(newStories);
+        }
+
+        /// <summary>
+        /// Search stories
+        /// </summary>
+        /// <returns>A list of Stories</returns>
+        [HttpGet]
+        [Route("searchStories")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<IEnumerable<StoryDto>>> SearchStories(string? text = "")
+        {
+            var newStories = await _mediator.Send(new SearchStoriesByTextQuery(text));
             return Ok(newStories);
         }
 
@@ -58,7 +74,7 @@ namespace HackerNews.Api.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<StoryDto>> Get(int id)
         {
-            var story = await _mediator.Send(new GetStoryQuery(id));
+            var story = await _mediator.Send(new GetStoryByIdQuery(id));
             return Ok(story);
         }
     }

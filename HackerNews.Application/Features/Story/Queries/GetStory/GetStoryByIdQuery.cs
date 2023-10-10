@@ -7,6 +7,6 @@ using HackerNews.Application.Features.Story.Queries.GetStory;
 using MediatR;
 
 namespace HackerNews.Application.Features.Story.Queries.GetStory;
-public record GetStoryQuery(int Id) : IRequest<StoryDto>;
+public record GetStoryByIdQuery(int Id) : IRequest<StoryDto>;
  
 
