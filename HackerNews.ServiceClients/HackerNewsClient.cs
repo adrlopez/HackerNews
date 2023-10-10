@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using AutoMapper.Features;
 using Polly.Registry;
 using Polly;
+using System.Drawing;
 
 namespace HackerNews.Infrastructure
 {
@@ -21,7 +22,20 @@ namespace HackerNews.Infrastructure
             _storyCachePolicy = policyRegistry.Get<IAsyncPolicy<Story>>(nameof(Story));
         }
 
-        public async Task<List<int>> GetNewStoryIds(int page, int size)
+        public async Task<List<int>> GetNewStoryIds()
+        {
+            var response = await _httpClient.GetAsync("v0/newstories.json");
+            var content = await response.Content.ReadAsStringAsync();
+            var storyIds = JsonConvert.DeserializeObject<List<int>>(content);
+            if (storyIds != null)
+            {
+                return storyIds;
+            }
+
+            return new List<int>();
+        }
+
+        public async Task<List<int>> GetNewStoryIdsByPage(int page, int size)
         {
             var response = await _httpClient.GetAsync("v0/newstories.json");
             var content = await response.Content.ReadAsStringAsync();

@@ -8,5 +8,5 @@ using HackerNews.Application.Features.Story.Queries.GetStory;
 
 namespace HackerNews.Application.Features.Story.Queries.GetNewStories
 {
-    public record GetNewStoriesQuery(int page, int size) : IRequest<List<StoryDto>>;
+    public record GetNewStoriesByPageQuery(int page, int size) : IRequest<List<StoryDto>>;
 }
