@@ -24,27 +24,29 @@ namespace HackerNews.Application.Features.Story.Queries.SearchStories
         }
         public async Task<List<StoryDto>> Handle(SearchStoriesByTextQuery request, CancellationToken cancellationToken)
         {
-            // call the http client to get the new stories
+            var tasks = new List<Task<Domain.Story?>>();
 
-            List<Domain.Story> result = new List<Domain.Story>();
-            var ids = await _client.GetNewStoryIds();
-
-            await Parallel.ForEachAsync(ids, cancellationToken, async (id, ct) =>
-            {
-                await GetStoryByIdLocal(id);
-
-            });
-
-            async Task GetStoryByIdLocal(int id)
+            async Task<Domain.Story?> GetStoryByIdLocal(int id)
             {
                 var story = await _client.GetStoryById(id);
                 if ((story != null) && story.Title.Contains(request.text ?? String.Empty, StringComparison.InvariantCultureIgnoreCase))
                 {
-                    result.Add(story);
+                    return story;
                 }
+
+                return null;
             }
 
-            return _mapper.Map<List<StoryDto>>(result);
+            var ids = await _client.GetNewStoryIds();
+
+            foreach (var id in ids)
+            {
+                tasks.Add(GetStoryByIdLocal(id));
+            }
+
+            var result = await Task.WhenAll(tasks);
+
+            return _mapper.Map<List<StoryDto>>(result.Where(s => s != null));
 
 
         }

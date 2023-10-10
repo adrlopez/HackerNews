@@ -19,9 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HackerNews.Domain", "Hacker
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HackerNews.Application", "HackerNews.Application\HackerNews.Application.csproj", "{94DA8A31-8CC4-46C4-BC57-7B31838985A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackerNews.Infrastructure", "HackerNews.ServiceClients\HackerNews.Infrastructure.csproj", "{4E75F4FF-8534-40CE-9939-D7E3DB6D058E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HackerNews.Infrastructure", "HackerNews.ServiceClients\HackerNews.Infrastructure.csproj", "{4E75F4FF-8534-40CE-9939-D7E3DB6D058E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackerNews.Api", "HackerNews.Api\HackerNews.Api.csproj", "{8EB67A06-39E6-4283-A337-5044996E784A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HackerNews.Api", "HackerNews.Api\HackerNews.Api.csproj", "{8EB67A06-39E6-4283-A337-5044996E784A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackerNews.Application.UnitTests", "HackerNews.Application.UnitTests\HackerNews.Application.UnitTests.csproj", "{2061A00E-C4A8-48FC-B7A2-4867383E3B22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{8EB67A06-39E6-4283-A337-5044996E784A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EB67A06-39E6-4283-A337-5044996E784A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EB67A06-39E6-4283-A337-5044996E784A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2061A00E-C4A8-48FC-B7A2-4867383E3B22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2061A00E-C4A8-48FC-B7A2-4867383E3B22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2061A00E-C4A8-48FC-B7A2-4867383E3B22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2061A00E-C4A8-48FC-B7A2-4867383E3B22}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,6 +64,7 @@ Global
 		{94DA8A31-8CC4-46C4-BC57-7B31838985A2} = {793C9847-3F97-4285-B7A2-492932721580}
 		{4E75F4FF-8534-40CE-9939-D7E3DB6D058E} = {4E073DA3-08B9-4DEF-ADF6-734B60351167}
 		{8EB67A06-39E6-4283-A337-5044996E784A} = {1E1AA19C-6390-4889-9B4B-8E9EDD6D2A6E}
+		{2061A00E-C4A8-48FC-B7A2-4867383E3B22} = {68CF6531-92A8-488C-AC72-4F14F2F42C6E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {78BCA70C-973B-4FAF-9213-8E4576B9EE59}

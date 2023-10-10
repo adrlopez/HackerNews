@@ -11,12 +11,12 @@ using MediatR;
 
 namespace HackerNews.Application.Features.Story.Queries.GetNewStories
 {
-    public class SearchStoriesByTextQueryHandler : IRequestHandler<GetNewStoriesByPageQuery, List<StoryDto>>
+    public class GetNewStoriesByPageQueryHandler : IRequestHandler<GetNewStoriesByPageQuery, List<StoryDto>>
     {
         private readonly IHackerNewsClient _client;
         private readonly IMapper _mapper;
 
-        public SearchStoriesByTextQueryHandler(IHackerNewsClient client, IMapper mapper)
+        public GetNewStoriesByPageQueryHandler(IHackerNewsClient client, IMapper mapper)
         {
             this._mapper = mapper;
             this._client = client;
@@ -24,27 +24,24 @@ namespace HackerNews.Application.Features.Story.Queries.GetNewStories
         }
         public async Task<List<StoryDto>> Handle(GetNewStoriesByPageQuery request, CancellationToken cancellationToken)
         {
-            // call the http client to get the new stories
+            var tasks = new List<Task<Domain.Story?>>();
 
-            List<Domain.Story> result = new List<Domain.Story>();
-            var ids = await _client.GetNewStoryIdsByPage(request.page, request.size);
-
-            await Parallel.ForEachAsync(ids, cancellationToken, async (id, ct) =>
-            {
-                await GetStoryByIdLocal(id);
-
-            });
-
-            async Task GetStoryByIdLocal(int id)
+            async Task<Domain.Story?> GetStoryByIdLocal(int id)
             {
                 var story = await _client.GetStoryById(id);
-                if (story != null)
-                {
-                    result.Add(story);
-                }
+                return story;
             }
 
-            return _mapper.Map<List<StoryDto>>(result);
+            var ids = await _client.GetNewStoryIdsByPage(request.page, request.size);
+
+            foreach (var id in ids)
+            {
+                tasks.Add(GetStoryByIdLocal(id));
+            }
+
+            var result = await Task.WhenAll(tasks);
+
+            return _mapper.Map<List<StoryDto>>(result.Where(s => s != null));
 
 
         }
