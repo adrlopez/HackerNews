@@ -23,7 +23,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HackerNews.Infrastructure",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HackerNews.Api", "HackerNews.Api\HackerNews.Api.csproj", "{8EB67A06-39E6-4283-A337-5044996E784A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackerNews.Application.UnitTests", "HackerNews.Application.UnitTests\HackerNews.Application.UnitTests.csproj", "{2061A00E-C4A8-48FC-B7A2-4867383E3B22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HackerNews.Application.UnitTests", "HackerNews.Application.UnitTests\HackerNews.Application.UnitTests.csproj", "{2061A00E-C4A8-48FC-B7A2-4867383E3B22}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{C0738532-82F9-437A-9AC1-79AF4D6AB876}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
