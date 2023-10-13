@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using HackerNews.Application.Contracts;
 using HackerNews.Domain;
 using Moq;
+using Newtonsoft.Json;
 
 namespace HackerNews.Application.UnitTests.Mocks
 {
@@ -13,53 +14,69 @@ namespace HackerNews.Application.UnitTests.Mocks
     {
         public static Mock<IHackerNewsClient> GetMockHackerNewsClient()
         {
-
             var storyIds = new List<int>()
             {
-                37835465, 37835456, 37835397, 37835383
+                37874229, 37874228, 37874220, 37874193, 37874176
             };
 
-            var stories = new List<Story>()
-            {
-                new Story()
+            var stories = JsonConvert.DeserializeObject<List<Story>>(@"[
                 {
-                    Id = 37835465,
-                    Title = "Caroline Ellison took almost 30 seconds to recognize ex-boyfriend SBF",
-                    Url = "https://www.cnbc.com/2023/10/10/caroline-ellison-took-almost-30-seconds-to-recognize-ex-boyfriend-sbf.html",
-                    Type = "story"
+                    ""id"": 37874229,
+                    ""title"": ""Tesla workers shared sensitive images recorded by customers' cars: Ex-employees"",
+                    ""url"": ""https://www.abc.net.au/news/2023-04-08/tesla-workers-shared-sensitive-images-recorded-by-customer-cars/102202382"",
+                    ""score"": 1,
+                    ""time"": ""2023-10-13T19:02:39Z"",
+                    ""by"": ""samaysharma"",
+                    ""type"": ""story""
                 },
-                new Story()
                 {
-                    Id = 37835456,
-                    Title = "The hubris of building AGI revealed",
-                    Url = "https://www.mindprison.cc/p/the-hubris-of-building-agi-revealed",
-                    Type = "story"
+                    ""id"": 37874228,
+                    ""title"": ""DigitalOcean Managed Kubernetes Postmortem"",
+                    ""url"": ""https://status.digitalocean.com/incidents/fsfsv9fj43w7"",
+                    ""score"": 1,
+                    ""time"": ""2023-10-13T19:02:38Z"",
+                    ""by"": ""iudqnolq"",
+                    ""type"": ""story""
                 },
-                new Story()
                 {
-                    Id = 37835397,
-                    Title = "Trust Cafe",
-                    Url = "https://www.trustcafe.io/en",
-                    Type = "story"
+                    ""id"": 37874220,
+                    ""title"": ""Removal of Mazda Connected Services Integration"",
+                    ""url"": ""https://www.home-assistant.io/blog/2023/10/13/removal-of-mazda-connected-services-integration/"",
+                    ""score"": 1,
+                    ""time"": ""2023-10-13T19:02:12Z"",
+                    ""by"": ""andylynch"",
+                    ""type"": ""story""
                 },
-                new Story()
                 {
-                    Id = 37835383,
-                    Title = "Airbnb listings down to 3,227 from 22,434 since August",
-                    Url = "https://www.wired.com/story/airbnb-ban-new-york-illegal-listings/",
-                    Type = "story"
+                    ""id"": 37874193,
+                    ""title"": ""Rising Instability"",
+                    ""url"": ""https://www.lynalden.com/october-2023-newsletter/"",
+                    ""score"": 2,
+                    ""time"": ""2023-10-13T19:00:05Z"",
+                    ""by"": ""jger15"",
+                    ""type"": ""story""
+                },
+                {
+                    ""id"": 37874176,
+                    ""title"": ""Ask HN: What is your favourite Indie Hackers episode?"",
+                    ""url"": """",
+                    ""score"": 1,
+                    ""time"": ""2023-10-13T18:58:02Z"",
+                    ""by"": ""kimchidude"",
+                    ""type"": ""story""
                 }
-            };
+            ]");
+
 
             var mockHackerNewsClient = new Mock<IHackerNewsClient>();
             mockHackerNewsClient.Setup(c => c.GetNewStoryIds()).ReturnsAsync(storyIds);
-            mockHackerNewsClient.Setup(c => c.GetStoryById(37835465)).ReturnsAsync(stories[0]);
-            mockHackerNewsClient.Setup(c => c.GetStoryById(37835456)).ReturnsAsync(stories[1]);
-            mockHackerNewsClient.Setup(c => c.GetStoryById(37835397)).ReturnsAsync(stories[2]);
-            mockHackerNewsClient.Setup(c => c.GetStoryById(37835383)).ReturnsAsync(stories[3]);
+            mockHackerNewsClient.Setup(c => c.GetStoryById(37874229)).ReturnsAsync(stories[0]);
+            mockHackerNewsClient.Setup(c => c.GetStoryById(37874228)).ReturnsAsync(stories[1]);
+            mockHackerNewsClient.Setup(c => c.GetStoryById(37874220)).ReturnsAsync(stories[2]);
+            mockHackerNewsClient.Setup(c => c.GetStoryById(37874193)).ReturnsAsync(stories[3]);
+            mockHackerNewsClient.Setup(c => c.GetStoryById(37874176)).ReturnsAsync(stories[4]);
 
             return mockHackerNewsClient;
-
         }
     }
 }

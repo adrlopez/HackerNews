@@ -37,10 +37,10 @@ namespace HackerNews.Application.UnitTests.Features.Story.Queries
         {
             var handler = new GetNewStoriesQueryHandler(_mockHackerNewsClient.Object, _mapper);
 
-            var result = await handler.Handle(new GetNewStoriesQuery(null, null, null, null, null,null, 1,10), CancellationToken.None);
+            var result = await handler.Handle(new GetNewStoriesQuery(1,10), CancellationToken.None);
 
             result.ShouldBeOfType<PaginatedResponse<StoryDto>>();
-            result.TotalItems.ShouldBe(4);
+            result.TotalItems.ShouldBe(5);
         }
 
         [Fact]
@@ -48,10 +48,22 @@ namespace HackerNews.Application.UnitTests.Features.Story.Queries
         {
             var handler = new GetNewStoriesQueryHandler(_mockHackerNewsClient.Object, _mapper);
 
-            var result = await handler.Handle(new GetNewStoriesQuery("Trust Cafe", null, null, null, null, null, 1, 10), CancellationToken.None);
+            var result = await handler.Handle(new GetNewStoriesQuery("Rising", 1, 5, null, null, "jger15", 1, 10), CancellationToken.None);
 
             result.ShouldBeOfType<PaginatedResponse<StoryDto>>();
             result.TotalItems.ShouldBe(1);
+        }
+
+
+        [Fact]
+        public async Task GetFilteredStoriesNoResultsTest()
+        {
+            var handler = new GetNewStoriesQueryHandler(_mockHackerNewsClient.Object, _mapper);
+
+            var result = await handler.Handle(new GetNewStoriesQuery("Rising", 1, 5, null, null, "alopez", 1, 10), CancellationToken.None);
+
+            result.ShouldBeOfType<PaginatedResponse<StoryDto>>();
+            result.TotalItems.ShouldBe(0);
         }
     }
 }
