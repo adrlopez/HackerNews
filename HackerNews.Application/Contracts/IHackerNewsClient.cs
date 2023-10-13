@@ -11,8 +11,6 @@ namespace HackerNews.Application.Contracts
     {
         Task<List<int>> GetNewStoryIds();
 
-        Task<List<int>> GetNewStoryIdsByPage(int page, int size);
-
         Task<Story?> GetStoryById(int id);
     }
 }

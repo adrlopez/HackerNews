@@ -8,20 +8,20 @@ using MediatR;
 
 namespace HackerNews.Application.Features.Story.Queries.GetNewStoryIds
 {
-    public class GetNewStoryIdsByPageQueryHandler : IRequestHandler<GetNewStoryIdsByPageQuery, List<int>>
+    public class GetNewStoryIdsQueryHandler : IRequestHandler<GetNewStoryIdsQuery, List<int>>
     {
         private readonly IHackerNewsClient _client;
 
-        public GetNewStoryIdsByPageQueryHandler(IHackerNewsClient client)
+        public GetNewStoryIdsQueryHandler(IHackerNewsClient client)
         {
             this._client = client;
             
         }
-        public async Task<List<int>> Handle(GetNewStoryIdsByPageQuery request, CancellationToken cancellationToken)
+        public async Task<List<int>> Handle(GetNewStoryIdsQuery request, CancellationToken cancellationToken)
         {
             // call the http client to get the new stories
 
-            var newStories = await _client.GetNewStoryIdsByPage(request.page, request.size);
+            var newStories = await _client.GetNewStoryIds();
 
             return newStories;
 
