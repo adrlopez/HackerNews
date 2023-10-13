@@ -34,17 +34,17 @@ namespace HackerNews.Application.UnitTests.Features.Story.Queries
         {
             var handler = new GetStoryByIdQueryHandler(_mapper, _mockHackerNewsClient.Object);
 
-            var result = await handler.Handle(new GetStoryByIdQuery(37835465), CancellationToken.None);
+            var result = await handler.Handle(new GetStoryByIdQuery(37874229), CancellationToken.None);
 
             result.ShouldBeOfType<StoryDto>();
-            result.Title.ShouldBe("Caroline Ellison took almost 30 seconds to recognize ex-boyfriend SBF");
-            result.Url.ShouldBe("https://www.cnbc.com/2023/10/10/caroline-ellison-took-almost-30-seconds-to-recognize-ex-boyfriend-sbf.html");
+            result.Title.ShouldBe("Tesla workers shared sensitive images recorded by customers' cars: Ex-employees");
+            result.Url.ShouldBe("https://www.abc.net.au/news/2023-04-08/tesla-workers-shared-sensitive-images-recorded-by-customer-cars/102202382");
 
-            result = await handler.Handle(new GetStoryByIdQuery(37835456), CancellationToken.None);
+            result = await handler.Handle(new GetStoryByIdQuery(37874228), CancellationToken.None);
 
             result.ShouldBeOfType<StoryDto>();
-            result.Title.ShouldBe("The hubris of building AGI revealed");
-            result.Url.ShouldBe("https://www.mindprison.cc/p/the-hubris-of-building-agi-revealed");
+            result.Title.ShouldBe("DigitalOcean Managed Kubernetes Postmortem");
+            result.Url.ShouldBe("https://status.digitalocean.com/incidents/fsfsv9fj43w7");
 
         }
     }

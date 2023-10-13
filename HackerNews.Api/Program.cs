@@ -1,6 +1,7 @@
 using HackerNews.Api.Middleware;
 using HackerNews.Application;
 using HackerNews.Infrastructure;
+using HackerNews.Worker;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,8 @@ builder.Services.AddCors(options =>
         .AllowAnyHeader()
         .AllowAnyMethod());
 });
+
+builder.Services.AddHostedService<Worker>();
 
 var app = builder.Build();
 
