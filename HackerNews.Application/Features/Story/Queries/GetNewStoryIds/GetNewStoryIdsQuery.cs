@@ -7,5 +7,5 @@ using MediatR;
 
 namespace HackerNews.Application.Features.Story.Queries.GetNewStoryIds
 {
-    public record GetNewStoryIdsByPageQuery(int page, int size) : IRequest<List<int>>;
+    public record GetNewStoryIdsQuery() : IRequest<List<int>>;
 }

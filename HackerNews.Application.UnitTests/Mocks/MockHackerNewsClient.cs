@@ -53,7 +53,6 @@ namespace HackerNews.Application.UnitTests.Mocks
 
             var mockHackerNewsClient = new Mock<IHackerNewsClient>();
             mockHackerNewsClient.Setup(c => c.GetNewStoryIds()).ReturnsAsync(storyIds);
-            mockHackerNewsClient.Setup(c => c.GetNewStoryIdsByPage(1,10)).ReturnsAsync(storyIds);
             mockHackerNewsClient.Setup(c => c.GetStoryById(37835465)).ReturnsAsync(stories[0]);
             mockHackerNewsClient.Setup(c => c.GetStoryById(37835456)).ReturnsAsync(stories[1]);
             mockHackerNewsClient.Setup(c => c.GetStoryById(37835397)).ReturnsAsync(stories[2]);

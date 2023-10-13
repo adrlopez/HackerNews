@@ -11,16 +11,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HackerNews.Application.Features.Story.Queries.GetNewStoryIds;
+using HackerNews.Application.Models;
 using Shouldly;
 
 namespace HackerNews.Application.UnitTests.Features.Story.Queries
 {
-    public class GetNewStoriesByPageQueryHandlerTests
+    public class GetNewStoriesQueryHandlerTests
     {
         private readonly Mock<IHackerNewsClient> _mockHackerNewsClient;
         private readonly IMapper _mapper;
         
-        public GetNewStoriesByPageQueryHandlerTests()
+        public GetNewStoriesQueryHandlerTests()
         {
             _mockHackerNewsClient = MockHackerNewsClient.GetMockHackerNewsClient();
             var mapperConfig = new MapperConfiguration(c =>
@@ -34,12 +35,23 @@ namespace HackerNews.Application.UnitTests.Features.Story.Queries
         [Fact]
         public async Task GetNewStoriesTest()
         {
-            var handler = new GetNewStoriesByPageQueryHandler(_mockHackerNewsClient.Object, _mapper);
+            var handler = new GetNewStoriesQueryHandler(_mockHackerNewsClient.Object, _mapper);
 
-            var result = await handler.Handle(new GetNewStoriesByPageQuery(1,10), CancellationToken.None);
+            var result = await handler.Handle(new GetNewStoriesQuery(null, null, null, null, null,null, 1,10), CancellationToken.None);
 
-            result.ShouldBeOfType<List<StoryDto>>();
-            result.Count.ShouldBe(4);
+            result.ShouldBeOfType<PaginatedResponse<StoryDto>>();
+            result.TotalItems.ShouldBe(4);
+        }
+
+        [Fact]
+        public async Task GetFilteredStoriesTest()
+        {
+            var handler = new GetNewStoriesQueryHandler(_mockHackerNewsClient.Object, _mapper);
+
+            var result = await handler.Handle(new GetNewStoriesQuery("Trust Cafe", null, null, null, null, null, 1, 10), CancellationToken.None);
+
+            result.ShouldBeOfType<PaginatedResponse<StoryDto>>();
+            result.TotalItems.ShouldBe(1);
         }
     }
 }

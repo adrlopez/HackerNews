@@ -13,5 +13,11 @@ namespace HackerNews.Application.Features.Story.Queries.GetStory
         public string Title { get; set; } = string.Empty;
 
         public string Url { get; set; } = string.Empty;
+
+        public int Score { get; set; }
+
+        public DateTime Time { get; set; }
+
+        public string By { get; set; } = string.Empty;
     }
 }

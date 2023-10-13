@@ -2,7 +2,6 @@
 using HackerNews.Application.Features.Story.Queries.GetNewStories;
 using HackerNews.Application.Features.Story.Queries.GetNewStoryIds;
 using HackerNews.Application.Features.Story.Queries.GetStory;
-using HackerNews.Application.Features.Story.Queries.SearchStories;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,9 +28,9 @@ namespace HackerNews.Api.Controllers
         [Route("getNewStoryIds")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<IEnumerable<int>>> GetNewStoryIds(int page, int size)
+        public async Task<ActionResult<IEnumerable<int>>> GetNewStoryIds()
         {
-            var newStoryIds = await _mediator.Send(new GetNewStoryIdsByPageQuery(page, size));
+            var newStoryIds = await _mediator.Send(new GetNewStoryIdsQuery());
             return Ok(newStoryIds);
         }
 
@@ -43,23 +42,9 @@ namespace HackerNews.Api.Controllers
         [Route("getNewStories")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<IEnumerable<StoryDto>>> GetNewStories(int page, int size)
+        public async Task<ActionResult<IEnumerable<StoryDto>>> GetNewStories([FromQuery] string? title, [FromQuery] int? minScore, [FromQuery] int? maxScore, [FromQuery] DateTime? fromDt, [FromQuery] DateTime? toDt, [FromQuery] string? createdBy, [FromQuery] int page = 1, [FromQuery] int size = 10)
         {
-            var newStories = await _mediator.Send(new GetNewStoriesByPageQuery(page, size));
-            return Ok(newStories);
-        }
-
-        /// <summary>
-        /// Search stories
-        /// </summary>
-        /// <returns>A list of Stories</returns>
-        [HttpGet]
-        [Route("searchStories")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<IEnumerable<StoryDto>>> SearchStories(string? text = "")
-        {
-            var newStories = await _mediator.Send(new SearchStoriesByTextQuery(text));
+            var newStories = await _mediator.Send(new GetNewStoriesQuery(title, minScore, maxScore, fromDt, toDt, createdBy, page, size));
             return Ok(newStories);
         }
 
