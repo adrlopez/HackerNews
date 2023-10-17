@@ -2,7 +2,7 @@ using System.Drawing;
 using HackerNews.Application.Features.Story.Queries.GetNewStories;
 using MediatR;
 
-namespace HackerNews.Worker
+namespace HackerNews.Api
 {
     public class Worker : BackgroundService
     {
@@ -22,7 +22,7 @@ namespace HackerNews.Worker
                 _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
                 // get all the stories. Even though I select only page 1, the cache will be refreshed.
                 var newStories = await _mediator.Send(new GetNewStoriesQuery(1,10), CancellationToken.None);
-                await Task.Delay(300000, stoppingToken);
+                await Task.Delay(60000, stoppingToken);
             }
         }
     }

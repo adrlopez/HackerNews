@@ -1,7 +1,7 @@
+using HackerNews.Api;
 using HackerNews.Api.Middleware;
 using HackerNews.Application;
 using HackerNews.Infrastructure;
-using HackerNews.Worker;
 
 var builder = WebApplication.CreateBuilder(args);
 
