@@ -2,6 +2,7 @@
 using HackerNews.Application.Features.Story.Queries.GetNewStories;
 using HackerNews.Application.Features.Story.Queries.GetNewStoryIds;
 using HackerNews.Application.Features.Story.Queries.GetStory;
+using HackerNews.Application.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,7 +43,7 @@ namespace HackerNews.Api.Controllers
         [Route("getNewStories")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<IEnumerable<StoryDto>>> GetNewStories([FromQuery] string? title, [FromQuery] int? minScore, [FromQuery] int? maxScore, [FromQuery] DateTime? fromDt, [FromQuery] DateTime? toDt, [FromQuery] string? createdBy, [FromQuery] int page = 1, [FromQuery] int size = 10)
+        public async Task<ActionResult<PaginatedResponse<StoryDto>>> GetNewStories([FromQuery] string? title, [FromQuery] int? minScore, [FromQuery] int? maxScore, [FromQuery] DateTime? fromDt, [FromQuery] DateTime? toDt, [FromQuery] string? createdBy, [FromQuery] int page = 1, [FromQuery] int size = 10)
         {
             var newStories = await _mediator.Send(new GetNewStoriesQuery(title, minScore, maxScore, fromDt, toDt, createdBy, page, size));
             return Ok(newStories);

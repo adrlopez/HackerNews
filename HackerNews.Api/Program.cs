@@ -14,7 +14,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("all", builder => builder.AllowAnyOrigin()
+    options.AddPolicy("AllowAll", builder => builder.AllowAnyOrigin()
         .AllowAnyHeader()
         .AllowAnyMethod());
 });
@@ -24,7 +24,7 @@ builder.Services.AddHostedService<Worker>();
 var app = builder.Build();
 
 app.UseMiddleware<ExceptionMiddleware>();
-
+app.UseCors("AllowAll");
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseSwaggerUI(options =>
