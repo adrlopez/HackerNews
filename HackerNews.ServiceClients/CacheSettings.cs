@@ -15,7 +15,8 @@ namespace HackerNews.Infrastructure
     {
         public static PolicyRegistry GetPolicyRegistry(IServiceProvider cacheProvider)
         {
-            const int cacheExpirationInMinutes = 450; // made an estimate on how long a new story is kept in the list of new 500 stories.
+            const int cacheExpirationInMinutes = 500; // aprox 1 story is created per minute. So, a story will be on the list of 500 stories for 500 minutes.
+                                                      
             return new PolicyRegistry
             {
                 {

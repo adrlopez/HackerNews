@@ -34,8 +34,8 @@ namespace HackerNews.Application.Models
 
         public static PaginatedResponse<T> Create(IQueryable<T> items, int pageNumber, int pageSize)
         {
-            var totalItems = items.Count();
-            var itemsInPage = items.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+            var totalItems = items != null && items.Any() ? items.Count() : 0;
+            var itemsInPage = items != null && items.Any() ? items.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList() : new List<T>();
 
             return new PaginatedResponse<T>(itemsInPage, pageNumber, pageSize, totalItems);
         }

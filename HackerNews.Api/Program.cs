@@ -1,7 +1,7 @@
+using HackerNews.Api;
 using HackerNews.Api.Middleware;
 using HackerNews.Application;
 using HackerNews.Infrastructure;
-using HackerNews.Worker;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +14,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("all", builder => builder.AllowAnyOrigin()
+    options.AddPolicy("AllowAll", builder => builder.AllowAnyOrigin()
         .AllowAnyHeader()
         .AllowAnyMethod());
 });
@@ -24,7 +24,7 @@ builder.Services.AddHostedService<Worker>();
 var app = builder.Build();
 
 app.UseMiddleware<ExceptionMiddleware>();
-
+app.UseCors("AllowAll");
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseSwaggerUI(options =>
