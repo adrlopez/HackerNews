@@ -26,7 +26,7 @@ The solution also has a background service that calls **hacker-news.firebaseio.c
 
 * Install .NET 6 SDK (https://dotnet.microsoft.com/en-us/download/dotnet/6.0) and Visual Studio 2022 or equivalent IDE.
 * Clone this repo
-* Open 'HackerNews.sln' in Visual Studio and start the application using 'Hackernews.Api' button
+* Open 'HackerNews.sln' in Visual Studio and start the application using 'Hackernews.Api' button. Or run *dotnet run HackerNews.Api.csproj*
 * The URL is http://localhost:7012/swagger/index.html
 
 ## Usage
